@@ -1,7 +1,7 @@
 langchain
 langchain_community
 langchain_text_splitters
-python-dotenv
+python_dotenv
 pypdf
 bs4
 wikipedia
