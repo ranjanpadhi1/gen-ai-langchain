@@ -1,7 +1,9 @@
 langchain
 langchain_community
 langchain_text_splitters
+langchain_openai
 python_dotenv
 pypdf
 bs4
 wikipedia
+chromadb
