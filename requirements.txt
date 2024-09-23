@@ -5,6 +5,7 @@ langchain_openai
 langchain_huggingface
 sentence_transformers
 chromadb
+faiss_cpu
 python_dotenv
 pypdf
 bs4
