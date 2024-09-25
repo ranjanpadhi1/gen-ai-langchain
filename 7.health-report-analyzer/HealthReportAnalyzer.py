@@ -10,9 +10,7 @@ class HealthReportAnalyzer:
         pass
 
     def run(self):
-        path = input("Enter file path: ")
-        if not path:
-            path = './files/H010001377076709636328.PDF'
+        path = './files/health-reports'
         
         if self.load_report(path):
             self.start_qna()
@@ -24,7 +22,7 @@ class HealthReportAnalyzer:
             self.llm_helper = LLMHelper(health_report_prompt, self.store)
             return True
         except:
-            print('Error while processing file!')
+            print('Error while processing the reports !')
 
     def start_qna(self):
         while True:

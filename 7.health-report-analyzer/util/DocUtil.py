@@ -1,26 +1,36 @@
 import os
 from pathlib import PureWindowsPath, PurePosixPath
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 def doc_to_chunks(path: str):
-    if not is_file_exists(path):
+    if not files_exist(path):
         return
-    if path.lower().endswith('.pdf'):
-        return load_pdf(path)
-    else:
-        print('Unsupported file format!')
+    
+    chunks = load_pdf(path)
+    if not chunks:
+        print('Error while processing the reports !')
+        
+    return chunks
 
 def load_pdf(path):
     try:
-        loader = PyPDFLoader(path)
+        loader = PyPDFDirectoryLoader(path)
         documents = loader.load()
         sp = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
         return sp.split_documents(documents)
     except:
-        print(f'File "{path}" not found!')
+        print('Invalid file format !')
 
-def is_file_exists(path): 
-    print("Current Working Directory:", os.getcwd())
-    print("File Exists:", os.path.exists(path))
-    return os.path.exists(path)
+def files_exist(path): 
+    print("Reading files from: ", os.getcwd() + path[1::].replace('/', '\\'))
+    files = os.listdir(path)
+    
+    if not files or len(files) == 0:
+        print("No reports found !")
+        return False
+    
+    for file in files:
+        print(file)
+
+    return True
