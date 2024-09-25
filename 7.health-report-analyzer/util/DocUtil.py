@@ -30,7 +30,7 @@ def files_exist(path):
         print("No reports found !")
         return False
     
-    for file in files:
-        print(file)
+    # for file in files:
+    #     print(file)
 
     return True

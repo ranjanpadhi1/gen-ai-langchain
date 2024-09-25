@@ -1,11 +1,12 @@
 import util.DocUtil as util
 from VectorStore import VectorStore
 from LLMHelper import LLMHelper
-from prompts import health_report_prompt
+from prompts import doctor_prompt
 
 class HealthReportAnalyzer:
     
     def __init__(self, streamlit=False) -> None:
+        self.model = "openai" # Change LLM model here - ollama, openai, huggingface
         self.store: VectorStore = None
         self.streamlit = streamlit
         pass
@@ -19,13 +20,10 @@ class HealthReportAnalyzer:
             self.start_qna()
 
     def load_report(self, path):
-        try:
-            doc_chunks = util.doc_to_chunks(path)
-            self.store = VectorStore(doc_chunks)
-            self.llm_helper = LLMHelper(health_report_prompt, self.store)
-            return True
-        except:
-            print('Error while processing the reports !')
+        doc_chunks = util.doc_to_chunks(path)
+        self.store = VectorStore(doc_chunks, self.model)
+        self.llm_helper = LLMHelper(doctor_prompt, self.store, self.model)
+        return True
 
     def start_qna(self):
         while True:
