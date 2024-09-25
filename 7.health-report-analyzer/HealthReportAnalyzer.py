@@ -5,14 +5,17 @@ from prompts import health_report_prompt
 
 class HealthReportAnalyzer:
     
-    def __init__(self) -> None:
+    def __init__(self, streamlit=False) -> None:
         self.store: VectorStore = None
+        self.streamlit = streamlit
         pass
 
     def run(self):
         path = './files/health-reports'
         
         if self.load_report(path):
+            if self.streamlit:
+                return self
             self.start_qna()
 
     def load_report(self, path):

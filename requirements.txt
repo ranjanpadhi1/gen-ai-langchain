@@ -11,3 +11,4 @@ python_dotenv
 pypdf
 bs4
 wikipedia
+streamlit
