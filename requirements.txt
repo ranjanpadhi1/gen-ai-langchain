@@ -13,3 +13,7 @@ pypdf
 bs4
 wikipedia
 streamlit
+langserve
+fastapi
+uvicorn
+sse_starlette
