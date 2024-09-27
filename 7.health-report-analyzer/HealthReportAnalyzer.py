@@ -6,7 +6,7 @@ from prompts import doctor_prompt, doctor_prompt_m
 class HealthReportAnalyzer:
     
     def __init__(self, streamlit=False) -> None:
-        self.model = "openai" # Change LLM model here - ollama, groq, openai, huggingface
+        self.model = "groq" # Change LLM model here - ollama, groq, openai, huggingface
         self.store: VectorStore = None
         self.streamlit = streamlit
         pass
