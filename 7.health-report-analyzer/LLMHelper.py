@@ -35,7 +35,7 @@ class LLMHelper:
             return ChatHuggingFace(model="gpt2")
         
     def ask_question(self, question):
-        return self.r_chain.invoke({"input": question})['answer']
+        return self.r_chain.stream({"input": question})
     
     
 

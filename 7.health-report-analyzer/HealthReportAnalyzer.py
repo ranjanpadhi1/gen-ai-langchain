@@ -34,4 +34,7 @@ class HealthReportAnalyzer:
                 self.llm_query(ques)
 
     def llm_query(self, ques):
-        print("\nAnswer: ", self.llm_helper.ask_question(ques))
+        for chunk in self.llm_helper.ask_question(ques):
+            if 'answer' in chunk:
+                print(chunk['answer'], end="", flush=True)
+        # print("\nAnswer: ", self.llm_helper.ask_question(ques))
