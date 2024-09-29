@@ -1,3 +1,4 @@
+import time
 import util.DocUtil as util
 from VectorStore import VectorStore
 from LLMHelper import LLMHelper
@@ -37,4 +38,5 @@ class HealthReportAnalyzer:
         for chunk in self.llm_helper.ask_question(ques):
             if 'answer' in chunk:
                 print(chunk['answer'], end="", flush=True)
+                time.sleep(0.03)
         # print("\nAnswer: ", self.llm_helper.ask_question(ques))

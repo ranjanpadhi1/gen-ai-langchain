@@ -29,15 +29,14 @@ def chats():
 chats()
 user_input = st.text_input("Start Conversation", value=st.session_state.user_input, placeholder="Type your message here and hit Enter ...", autocomplete="off")
 
-text = ""
 def stream_fn(stream):
     global text
+    text = ""
     for chunk in stream:
         if 'answer' in chunk:
             text += chunk['answer']
             yield chunk['answer']
             time.sleep(0.03)
-
 
 if user_input:
     st.session_state.chat_history.append({"role": "human", "content": user_input})
