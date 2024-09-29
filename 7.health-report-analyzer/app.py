@@ -5,8 +5,9 @@ import time
 load_dotenv()
 
 rep_analyzer = HealthReportAnalyzer(streamlit=True).run()
+st.set_page_config(page_title="Virtual Doctor")
 st.title("Virtual Doctor")
-st.text("Analyzes health report and provides recommendation")
+st.text("Analyzes health report and provides recommendations")
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
@@ -17,7 +18,7 @@ if 'user_input' not in st.session_state:
 con = st.empty()
 
 def chats():
-    with con.container(height=600, border=None):
+    with con.container(height=600, border=0):
         for chat in st.session_state.chat_history:
             message = st.chat_message(chat["role"])
             message.write(chat["content"])
