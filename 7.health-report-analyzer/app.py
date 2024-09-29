@@ -36,7 +36,7 @@ def stream_fn(stream):
         if 'answer' in chunk:
             text += chunk['answer']
             yield chunk['answer']
-            time.sleep(0.05)
+            time.sleep(0.03)
 
 
 if user_input:
