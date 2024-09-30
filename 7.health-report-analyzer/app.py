@@ -27,7 +27,6 @@ def chats():
         output_placeholder = st.empty()
 
 chats()
-user_input = st.text_input("Start Conversation", value=st.session_state.user_input, placeholder="Type your message here and hit Enter ...", autocomplete="off")
 
 def stream_fn(stream):
     global text
@@ -38,9 +37,8 @@ def stream_fn(stream):
             yield chunk['answer']
             time.sleep(0.03)
 
-if user_input:
+if user_input := st.chat_input():
     st.session_state.chat_history.append({"role": "human", "content": user_input})
-    chats()
 
     stream = rep_analyzer.llm_helper.ask_question(user_input)
     msg = output_placeholder.chat_message('ai')
