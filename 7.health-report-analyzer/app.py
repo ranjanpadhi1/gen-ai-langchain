@@ -39,6 +39,7 @@ def stream_fn(stream):
 
 if user_input := st.chat_input():
     st.session_state.chat_history.append({"role": "human", "content": user_input})
+    chats()
 
     stream = rep_analyzer.llm_helper.ask_question(user_input)
     msg = output_placeholder.chat_message('ai')
